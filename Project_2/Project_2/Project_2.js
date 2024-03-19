@@ -1,6 +1,9 @@
 let aeData = [];
 let kData = [];
 let nData = [];
+let resizedAespaWidth = [];
+let resizedKehlaniWidth = [];
+let resizedNikiWidth = [];
 
 let aespaButtonPressed = false;
 let kehlaniButtonPressed = false;
@@ -53,7 +56,7 @@ function preload() {
  aespaTable = loadTable('data/aespa_data.csv', 'csv', 'header');
  kehlaniTable = loadTable('data/kehlani_data.csv', 'csv', 'header');
  nikiTable = loadTable('data/niki_data.csv', 'csv', 'header');
- 
+  
 }
 
 function setup() {
@@ -85,12 +88,13 @@ function setup() {
   resizeAespaImages();
   resizeKehlaniImages();
   resizeNikiImages();
-  
+    
 }
 function resizeAespaImages() {
   for (let i = 0; i < aeData.length; i++) {
   let aSize = aespaTable.getNum(i, 'Streams');
-  aeData[i].resize(aSize, aSize);
+  aeData[i].resize(aSize, 0);
+  resizedAespaWidth[i] = aeData[i].width;
   }
 }
 
@@ -98,14 +102,16 @@ function resizeAespaImages() {
 function resizeKehlaniImages() {
   for (let i = 0; i < kData.length; i++) {
     let kSize = kehlaniTable.getNum(i, 'Streams');
-    kData[i].resize(kSize, kSize);
+    kData[i].resize(kSize, 0);
+    resizedKehlaniWidth[i] = kData[i].width;
   }
 }
 
 function resizeNikiImages() {
   for (let i = 0; i < nData.length; i++) {
     let nSize = nikiTable.getNum(i, 'Streams');
-    nData[i].resize(nSize, nSize);
+    nData[i].resize(nSize, 0);
+    resizedNikiWidth[i] = nData[i].width;
   } 
 }
 
@@ -148,24 +154,25 @@ noLoop();
 
 
 function popularitySpots() {
+let spacing = 100;
 if (aespaButtonPressed) {
   for (let i = 0; i < aeData.length; i++) {
     // Calculate position for each image
-    let x = i * 150; // Adjust the spacing between images
+    let x = i * (resizedAespaWidth[i] + spacing); // Adjust the spacing between images
     let y = 100;
     image(aeData[i], x, y); // Draw the image at the calculated position
     }
 } else if (kehlaniButtonPressed) {
   for (let i = 0; i < kData.length; i++) {
     // Calculate position for each image
-    let x = i * 150; // Adjust the spacing between images
+    let x = i * (resizedKehlaniWidth[i] + spacing); // Adjust the spacing between images
     let y = 100;
     image(kData[i], x, y); // Draw the image at the calculated position
     }
 } else if (nikiButtonPressed) {
   for (let i = 0; i < nData.length; i++) {
     // Calculate position for each image
-    let x = i * 150; // Adjust the spacing between images
+    let x = i * (resizedNikiWidth[i] + spacing); // Adjust the spacing between images
     let y = 100;
     image(nData[i], x, y); // Draw the image at the calculated position
     }
