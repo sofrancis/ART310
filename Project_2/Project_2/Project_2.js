@@ -50,17 +50,10 @@ function preload() {
   
   backie = loadImage('data/backie.jpeg');
   
-  aespaTable = loadTable('data/aespa_data.csv', 'csv', 'header', () => {
-        resizeAespaImages(); 
- });
+ aespaTable = loadTable('data/aespa_data.csv', 'csv', 'header');
+ kehlaniTable = loadTable('data/kehlani_data.csv', 'csv', 'header');
+ nikiTable = loadTable('data/niki_data.csv', 'csv', 'header');
  
- kehlaniTable = loadTable('data/kehlani_data.csv', 'csv', 'header', () => {
-        resizeKehlaniImages(); 
- });
- 
- nikiTable = loadTable('data/niki_data.csv', 'csv', 'header', () => {
-        resizeNikiImages(); 
- });
 }
 
 function setup() {
@@ -89,13 +82,15 @@ function setup() {
   switchButton.position(1673, 10);
   switchButton.mousePressed(switchy);
   
+  resizeAespaImages();
+  resizeKehlaniImages();
+  resizeNikiImages();
+  
 }
-//sweet spot is A100,000, K1,000,000, 1,000,000
 function resizeAespaImages() {
   for (let i = 0; i < aeData.length; i++) {
   let aSize = aespaTable.getNum(i, 'Streams');
-  let aScaledSize = aSize/1;
-  aeData[i].resize(aScaledSize, 0);
+  aeData[i].resize(aSize, aSize);
   }
 }
 
@@ -156,21 +151,21 @@ function popularitySpots() {
 if (aespaButtonPressed) {
   for (let i = 0; i < aeData.length; i++) {
     // Calculate position for each image
-    let x = i * 200; // Adjust the spacing between images
+    let x = i * 150; // Adjust the spacing between images
     let y = 100;
     image(aeData[i], x, y); // Draw the image at the calculated position
     }
 } else if (kehlaniButtonPressed) {
   for (let i = 0; i < kData.length; i++) {
     // Calculate position for each image
-    let x = i * 200; // Adjust the spacing between images
+    let x = i * 150; // Adjust the spacing between images
     let y = 100;
     image(kData[i], x, y); // Draw the image at the calculated position
     }
 } else if (nikiButtonPressed) {
   for (let i = 0; i < nData.length; i++) {
     // Calculate position for each image
-    let x = i * 200; // Adjust the spacing between images
+    let x = i * 150; // Adjust the spacing between images
     let y = 100;
     image(nData[i], x, y); // Draw the image at the calculated position
     }
