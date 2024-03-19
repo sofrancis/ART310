@@ -1,30 +1,30 @@
-let aData = [];
+let aeData = [];
 let kData = [];
 let nData = [];
 
-let amineButtonPressed = false;
+let aespaButtonPressed = false;
 let kehlaniButtonPressed = false;
 let nikiButtonPressed = false;
 let organize = false;
 
-let amineButton, kehlaniButton, nikiButton, switchButton;
+let aespaButton, kehlaniButton, nikiButton, switchButton;
 
-let amineTable, kehlaniTable, nikiTable;
+let aespaTable, kehlaniTable, nikiTable;
 
 let backie;
 
 function preload() {
   
-  aData[0] = loadImage('data/amine/OnePointFive.jpeg');
-  aData[1] = loadImage('data/amine/GoodForYou.jpeg');
-  aData[2] = loadImage('data/amine/Kaytramine.jpeg');
-  aData[3] = loadImage('data/amine/Kaytramine2.jpeg');
-  aData[4] = loadImage('data/amine/DearAnnie.jpeg');
-  aData[5] = loadImage('data/amine/GoodForYou2.jpeg');
-  aData[6] = loadImage('data/amine/IntoTheSpider-Verse.jpeg');  
-  aData[7] = loadImage('data/amine/Kaytramine3.jpeg');
-  aData[8] = loadImage('data/amine/TwoPointFive.jpeg');
-  aData[9] = loadImage('data/amine/Kaytramine4.jpeg');
+  aeData[0] = loadImage('data/aespa/Drama.jpeg');
+  aeData[1] = loadImage('data/aespa/Spicy.jpeg');
+  aeData[2] = loadImage('data/aespa/Savage.jpeg');
+  aeData[3] = loadImage('data/aespa/BetterThings.jpeg');
+  aeData[4] = loadImage('data/aespa/HoldOnTight.jpeg');
+  aeData[5] = loadImage('data/aespa/NextLevel.jpeg');
+  aeData[6] = loadImage('data/aespa/BlackMamba.jpeg');  
+  aeData[7] = loadImage('data/aespa/Illusion.jpeg');
+  aeData[8] = loadImage('data/aespa/Girls.jpeg');
+  aeData[9] = loadImage('data/aespa/LucidDream.jpeg');
   
   kData[0] = loadImage('data/kehlani/WhileWeWait.jpeg');
   kData[1] = loadImage('data/kehlani/SweetSexySavage.jpeg');
@@ -37,29 +37,29 @@ function preload() {
   kData[8] = loadImage('data/kehlani/Honey.jpeg');
   kData[9] = loadImage('data/kehlani/PinkPlanet.jpeg');
   
-  nData[0] = loadImage('data/niki/Nicole.jpeg');
+  nData[0] = loadImage('data/niki/TakeAChanceWithMe.jpeg');
   nData[1] = loadImage('data/niki/lowkey.jpeg');
   nData[2] = loadImage('data/niki/EverySummertime.jpeg');
-  nData[3] = loadImage('data/niki/Nicole2.jpeg');
-  nData[4] = loadImage('data/niki/Nicole3.jpeg');
-  nData[5] = loadImage('data/niki/Nicole4.jpeg');
+  nData[3] = loadImage('data/niki/Backburner.jpeg');
+  nData[4] = loadImage('data/niki/Oceans&Engines.jpeg');
+  nData[5] = loadImage('data/niki/HighSchoolInJakarta.jpeg');
   nData[6] = loadImage('data/niki/urs.jpeg');
   nData[7] = loadImage('data/niki/LaLaLostYou.jpeg');
   nData[8] = loadImage('data/niki/ILikeU.jpeg');
-  nData[9] = loadImage('data/niki/Nicole5.jpeg');
+  nData[9] = loadImage('data/niki/Anaheim.jpeg');
   
   backie = loadImage('data/backie.jpeg');
   
-  amineTable = loadTable('data/amine_data.csv', 'csv', 'header', () => {
-        resizeAmineImages(); // Callback function to resize images after CSV data is loaded
+  aespaTable = loadTable('data/aespa_data.csv', 'csv', 'header', () => {
+        resizeAespaImages(); 
  });
  
  kehlaniTable = loadTable('data/kehlani_data.csv', 'csv', 'header', () => {
-        resizeKehlaniImages(); // Callback function to resize images after CSV data is loaded
+        resizeKehlaniImages(); 
  });
  
  nikiTable = loadTable('data/niki_data.csv', 'csv', 'header', () => {
-        resizeNikiImages(); // Callback function to resize images after CSV data is loaded
+        resizeNikiImages(); 
  });
 }
 
@@ -67,11 +67,11 @@ function setup() {
   createCanvas(1800, 1000);
   
   
-  amineButton = createButton('Aminé');
-  amineButton.position(10, 10);
-  amineButton.size(145, 75);
-  amineButton.style('font-size', '40px'); //font size
-  amineButton.mousePressed(amineData);
+  aespaButton = createButton('aespa');
+  aespaButton.position(10, 10);
+  aespaButton.size(145, 75);
+  aespaButton.style('font-size', '40px'); //font size
+  aespaButton.mousePressed(aespaData);
   
   kehlaniButton = createButton('Kehlani');
   kehlaniButton.position(10, 915);
@@ -91,28 +91,26 @@ function setup() {
   
 }
 //sweet spot is A100,000, K1,000,000, 1,000,000
-function resizeAmineImages() {
-  for (let i = 0; i < aData.length; i++) {
-  let aSize = amineTable.getNum(i, 'Streams'); // Corrected variable name
-  let aScaledSize = aSize / 100000; 
-  aData[i].resize(aScaledSize, 0);
+function resizeAespaImages() {
+  for (let i = 0; i < aeData.length; i++) {
+  let aSize = aespaTable.getNum(i, 'Streams');
+  let aScaledSize = aSize/1;
+  aeData[i].resize(aScaledSize, 0);
   }
 }
 
 
 function resizeKehlaniImages() {
   for (let i = 0; i < kData.length; i++) {
-    let kSize = kehlaniTable.getNum(i, 'Streams'); // Corrected variable name
-    let kScaledSize = kSize / 1000000;              
-    kData[i].resize(kScaledSize, 0);
+    let kSize = kehlaniTable.getNum(i, 'Streams');
+    kData[i].resize(kSize, kSize);
   }
 }
 
 function resizeNikiImages() {
   for (let i = 0; i < nData.length; i++) {
-    let nSize = nikiTable.getNum(i, 'Streams'); // Corrected variable name
-    let nScaledSize = nSize / 1000000; 
-    nData[i].resize(nScaledSize, 0);
+    let nSize = nikiTable.getNum(i, 'Streams');
+    nData[i].resize(nSize, nSize);
   } 
 }
 
@@ -130,11 +128,11 @@ function draw() {
 
 
 function streamSpots() {
-if (amineButtonPressed) {
-  for (let i = 0; i < aData.length; i++) {
+if (aespaButtonPressed) {
+  for (let i = 0; i < aeData.length; i++) {
         let x = random(width);
         let y = random(height);
-        image(aData[i], x, y);
+        image(aeData[i], x, y);
     }
 } else if (kehlaniButtonPressed) {
   for (let i = 0; i < kData.length; i++) {
@@ -155,12 +153,12 @@ noLoop();
 
 
 function popularitySpots() {
-if (amineButtonPressed) {
-  for (let i = 0; i < aData.length; i++) {
+if (aespaButtonPressed) {
+  for (let i = 0; i < aeData.length; i++) {
     // Calculate position for each image
     let x = i * 200; // Adjust the spacing between images
     let y = 100;
-    image(aData[i], x, y); // Draw the image at the calculated position
+    image(aeData[i], x, y); // Draw the image at the calculated position
     }
 } else if (kehlaniButtonPressed) {
   for (let i = 0; i < kData.length; i++) {
@@ -187,8 +185,8 @@ function switchy() {
 }
 
 
-function amineData() {
-  amineButtonPressed = true;
+function aespaData() {
+  aespaButtonPressed = true;
   kehlaniButtonPressed = false;
   nikiButtonPressed = false;
 }
@@ -196,7 +194,7 @@ function amineData() {
 
 
 function kehlaniData() {
-  amineButtonPressed = false;
+  aespaButtonPressed = false;
   kehlaniButtonPressed = true;
   nikiButtonPressed = false;
 }
@@ -204,7 +202,7 @@ function kehlaniData() {
 
 
 function nikiData() {
-  amineButtonPressed = false;
+  aespaButtonPressed = false;
   kehlaniButtonPressed = false;
   nikiButtonPressed = true;
 }
