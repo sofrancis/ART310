@@ -1,0 +1,11 @@
+Lavender: #ABA7FF
+
+Flamingo red: #EF476F
+
+Cheese: #FFD166
+
+Smooth blue: #6AB1F7
+
+Mint: #62E9BE
+
+Sandy: #FFECCB
